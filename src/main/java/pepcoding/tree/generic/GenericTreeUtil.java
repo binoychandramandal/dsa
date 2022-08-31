@@ -299,7 +299,7 @@ public class GenericTreeUtil {
      * Find a key in tree
      *
      * @param node tree
-     * @param k    key to search
+     * @param k    key to exists
      * @return true if present else false
      */
     public static boolean find(Node node, int k) {

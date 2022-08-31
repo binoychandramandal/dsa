@@ -1,5 +1,8 @@
 package recurrsion.practise;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class CrossWord {
     public static void main(String[] args) {
         char[][] board = new char[][]{
@@ -14,9 +17,85 @@ public class CrossWord {
                 {'+', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
                 {'+', '+', '+', '+', '+', '+', '+', '+', '+', '+'}
         };
-        String[] words =new String[]{"PUNJAB","JHARKHAND","MIZORAM","MUMBAI"};
-        solution(board,words,0);
+        String[] words = new String[]{"PUNJAB", "JHARKHAND", "MIZORAM", "MUMBAI"};
+        solution(board, words, 0);
 
+//        char[][] board = new char[][]{
+//                {'-', '-', '-', '-'},
+//                {'+', '-', '+', '+'},
+//                {'+', '-', '+', '+'}
+//        };
+//        String[]  words =new String[]{"GRAY","RAY"};
+//        solution(board,words,0);
+
+        char[][] arr = {
+                {'+', '-', '+', '+', '+', '+', '+', '+', '+', '+'},
+                {'+', '-', '+', '+', '+', '+', '+', '+', '+', '+'},
+                {'+', '-', '+', '+', '+', '+', '+', '+', '+', '+'},
+                {'+', '-', '-', '-', '-', '-', '+', '+', '+', '+'},
+                {'+', '-', '+', '+', '+', '-', '+', '+', '+', '+'},
+                {'+', '-', '+', '+', '+', '-', '+', '+', '+', '+'},
+                {'+', '+', '+', '+', '+', '-', '+', '+', '+', '+'},
+                {'+', '+', '-', '-', '-', '-', '-', '-', '+', '+'},
+                {'+', '+', '+', '+', '+', '-', '+', '+', '+', '+'},
+                {'+', '+', '+', '+', '+', '-', '+', '+', '+', '+'}
+        };
+        words = new String[]{"LONDON", "DELHI", "ICELAND", "ANKARA"};
+        solution(arr, words, 0);
+
+        String[] lines = {
+        "*#********",
+        "*-********",
+        "*#****#***",
+        "*##***##**",
+        "*#****#***",
+        "*#****#***",
+        "*#****#***",
+        "*#*######*",
+        "*#********",
+        "***#######"
+        };
+       lines= Stream.of(lines).map(x->x.replaceAll("\\*","+")).map(x->x.replaceAll("#","-")).collect(Collectors.toList()).toArray(new String[0]);
+        arr = getcharArray(lines);
+        words = new String[]{"PUNJAB", "JHARKHAND", "MIZORAM", "MUMBAI"};
+        solution(arr,words,0);
+
+
+        arr = new char[][]{
+                {'+','-'},
+                {'-','-'},
+                {'+','+'},
+        };
+        words = new String[]{"AB", "CB"};
+        solution(arr,words,0);
+        System.out.println("------------------");
+        arr = new char[][]{
+                {'+','-'},
+                {'-','-'},
+                {'-','+'},
+                {'-','+'},
+        };
+        words = new String[]{"AB", "CB","CAB"};
+        solution(arr,words,0);
+        System.out.println("------------------");
+        arr = new char[][]{
+                {'+','+'},
+                {'-','+'},
+                {'+','+'},
+                {'-','-'},
+                {'-','-'}
+        };
+        words = new String[]{"AB", "DE"};
+        solution(arr,words,0);
+
+    }
+
+    static char[][] getcharArray(String[] lines) {
+        char[][] arr = new char[lines.length][];
+        for (int i = 0; i < lines.length; i++) {
+            arr[i] = lines[i].toCharArray();
+        }
+        return arr;
     }
 
     static void print(char[][] arr) {
@@ -29,24 +108,27 @@ public class CrossWord {
     }
 
     static void solution(char[][] arr, String[] words, int vidx) {
-        if (vidx == arr.length) {
+        if (vidx == words.length) {
             print(arr);
             return;
         }
         String word = words[vidx];
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length; j++) {
-                if (arr[i][j] == '-' || arr[i][i] == word.charAt(0)) {
+            for (int j = 0; j < arr[i].length; j++) {
+                if (arr[i][j] == '-' || arr[i][j] == word.charAt(0)) {
+
                     if (canPlaceWordHorizantally(arr, word, i, j)) {
                         boolean[] weplaced = placeWordHorizontally(arr, word, i, j);
                         solution(arr, words, vidx + 1);
                         unplaceWordHorizontally(arr, weplaced, i, j);
                     }
+
                     if (canPlaceWordVertically(arr, word, i, j)) {
                         boolean[] weplaced = placeWordVertically(arr, word, i, j);
                         solution(arr, words, vidx + 1);
                         unplaceWordVertically(arr, weplaced, i, j);
                     }
+
                 }
             }
         }

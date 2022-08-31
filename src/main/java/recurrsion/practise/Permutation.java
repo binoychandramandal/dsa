@@ -4,8 +4,8 @@ public class Permutation {
 
     public static void main(String[] args) {
         //printPermutation("abc","");
-       // permutations(new int[3], 1, 3);
-        permutations( 1, 5,new int[3],0,3,"");
+        permutations(new int[3], 1);
+        //permutations( 1, 5,new int[3],0,3,"");
     }
 
 
@@ -24,19 +24,21 @@ public class Permutation {
     }
 
 
-    static void permutations(int[] boxes, int ci, int ti) {
-        if (ci > ti) {
+    static void permutations(int[] boxes, int ci) {
+        if (ci > boxes.length) {
+            StringBuilder sb =new StringBuilder();
             for (int i = 0; i < boxes.length; i++) {
-                System.out.print(boxes[i] + " ");
+                if(boxes[i]!=0)
+                sb.append(boxes[i]);
             }
-            System.out.println();
+            System.out.println(sb.toString());
             return;
         }
 
         for (int i = 0; i < boxes.length; i++) {
             if (boxes[i] == 0) {
                 boxes[i] = ci;
-                permutations(boxes, ci + 1, ti);
+                permutations(boxes, ci + 1);
                 boxes[i] = 0;
             }
         }
