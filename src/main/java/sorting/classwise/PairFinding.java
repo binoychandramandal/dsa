@@ -5,7 +5,6 @@ public class PairFinding {
         int[] a = {7, 8, 2, 4};
         int[] b = {3, 5, 1, 10};
         System.out.println(findPair(a, b));
-
     }
 
     static int findPair(int[] a, int[] b) {
