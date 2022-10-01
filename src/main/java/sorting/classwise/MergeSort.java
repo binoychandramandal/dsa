@@ -16,7 +16,7 @@ public class MergeSort {
     static void mergeSort(int[] a) {
         int[] t = new int[]{0};
         mergeSort0(a, 0, a.length - 1, t);
-        System.out.println(t[0]);
+        //System.out.println(t[0]);
     }
 
     static void mergeSort0(int[] a, int start, int end, int[] t) {
