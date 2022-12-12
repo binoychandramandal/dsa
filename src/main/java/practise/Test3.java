@@ -1,12 +1,17 @@
 package practise;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Test3 {
     public static void main(String[] args) {
-        System.out.println(getSubSequence("abc"));
-        System.out.println(getAllPaths(4));
+        //System.out.println(getSubSequence("abc"));
+        System.out.println(generatePropertyCombination(Arrays.asList("a","b","c")));
+       // System.out.println(getAllPaths(4));
     }
 
     static ArrayList<String> getSubSequence(String str) {
@@ -26,6 +31,29 @@ public class Test3 {
             mres.add(ch + r);
         }
         return mres;
+    }
+
+    private static List<Set<String>> generatePropertyCombination(List<String> propertyList){
+        List<String> props=generateCombination(propertyList,0);
+      return props.stream().filter(x->!x.isEmpty()).map(x-> Stream.of(x.split(",")).collect(Collectors.toSet())).collect(Collectors.toList());
+    }
+
+   private static List<String> generateCombination(List<String> str,int i) {
+        if (str.size()==i) {
+            ArrayList<String> r = new ArrayList<>();
+            r.add("");
+            return r;
+        }
+        String ch = str.get(i);
+        List<String> res = generateCombination(str,i+1);
+        List<String> mRes = new ArrayList<>();
+        for (String r : res) {
+            mRes.add(r);
+        }
+        for (String r : res) {
+            mRes.add(ch +","+ r);
+        }
+        return mRes;
     }
 
     static List<String> getAllPaths(int n) {

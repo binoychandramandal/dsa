@@ -3,7 +3,13 @@ import java.util.Arrays;
 public class Test {
     public static void main(String[] args) {
 
-        System.out.println(Arrays.toString(getAllindices(new int[]{2,4,4,4,5},0,0,4)));
+            String abc="次回もこのログイン名を使用する";
+            for(char c:abc.toCharArray()){
+                System.out.println(c+1);
+            }
+            System.out.println("String-->"+abc);
+
+       // System.out.println(Arrays.toString(getAllindices(new int[]{2,4,4,4,5},0,0,4)));
 
     }
 
