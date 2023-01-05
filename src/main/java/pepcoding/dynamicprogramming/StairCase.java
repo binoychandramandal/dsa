@@ -4,11 +4,29 @@ public class StairCase {
 
     public static void main(String[] args) {
         int n = 10;
-        System.out.println(solve(n, new int[n + 1]));
+        //System.out.println(solve(n, new int[n + 1]));
 
-        System.out.println(countPath(n));
+        //System.out.println(countPath(n));
+       // System.out.println(getPathCounts(n));
+        System.out.println(getPathCounts(n,new int[n+1]));
         System.out.println(countPathWithJump(13, new int[]{5, 5, 2, 4, 1, 5, 9, 8, 6, 3, 8, 9, 1}));
-        System.out.println(countPathWithJumpWithMinimumMove(10, new int[]{3,2,4,2,0,2,3,1,2,2}));
+        System.out.println(countPathWithJumpWithMinimumMove(10, new int[]{3, 2, 4, 2, 0, 2, 3, 1, 2, 2}));
+    }
+
+    static int getPathCounts(int n) {
+        if (n == 0) return 1;
+        if (n < 0) return 0;
+        System.out.println("calling "+n);
+        return getPathCounts(n - 1) + getPathCounts(n - 2) + getPathCounts(n - 3);
+    }
+
+    static int getPathCounts(int n,int[] dp) {
+        if (n == 0) return 1;
+        if (n < 0) return 0;
+        if(dp[n]!=0)
+            return dp[n];
+        System.out.println("calling "+n);
+        return dp[n]=getPathCounts(n - 1,dp) + getPathCounts(n - 2,dp) + getPathCounts(n - 3,dp);
     }
 
     /**
@@ -29,7 +47,7 @@ public class StairCase {
         if (memo[n] != 0) {
             return memo[n];
         }
-        System.out.println("solve  " + n);
+        //System.out.println("solve  " + n);
         int path1 = solve(n - 1, memo);
         int path2 = solve(n - 2, memo);
         int path3 = solve(n - 3, memo);
