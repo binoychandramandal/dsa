@@ -1,6 +1,5 @@
 package pepcoding.tree.binary;
 
-import com.sun.tools.javac.util.Pair;
 
 public class Node {
     int val;

@@ -7,7 +7,6 @@ public class DistinctSubString {
     public static void main(String[] args) {
         DistinctSubString t =new DistinctSubString();
         System.out.println(t.countDistinct("abab"));
-
     }
 
     private DN root = new DN();

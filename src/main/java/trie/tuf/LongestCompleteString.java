@@ -9,7 +9,7 @@ public class LongestCompleteString {
     public static void main(String[] args) {
         LongestCompleteString t = new LongestCompleteString();
         //System.out.println(t.longestCompleteString(Arrays.asList("n", "ni", "nin", "ninj", "ninja")));
-        System.out.println(t.longestCompleteString(Arrays.asList("ni", "nin", "ninj", "ninja")));
+        System.out.println(t.longestCompleteString(Arrays.asList("n","ni", "nin", "ninj", "ninja")));
     }
 
     public String longestCompleteString(List<String> words) {
