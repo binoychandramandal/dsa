@@ -20,7 +20,7 @@ public class Builder {
 
         }
 
-        public Student(String name, String email, String address, int age) {
+        private Student(String name, String email, String address, int age) {
             this.name = name;
             this.email = email;
             this.address = address;
